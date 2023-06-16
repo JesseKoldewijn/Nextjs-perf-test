@@ -3,6 +3,7 @@ import { Fragment, Suspense } from "react";
 import { type iResponseCount } from "@/app/api/count/[count]/route";
 import ListItemServerSide from "@/components/listItemServerSide";
 import { type GetStaticPaths } from "next";
+import { env } from "@/env.mjs";
 
 interface iPropsISR {
   count: number;
@@ -63,7 +64,7 @@ export const getStaticProps = async ({
   }
 
   const count = parseInt(String(paramObj.count));
-  const referer = "http://localhost:3000";
+  const referer: string = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
 
   if (isNaN(count)) {
     return {

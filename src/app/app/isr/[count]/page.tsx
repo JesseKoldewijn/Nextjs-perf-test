@@ -1,5 +1,6 @@
 import { type iResponseCount } from "@/app/api/count/[count]/route";
 import ListItemServerSide from "@/components/listItemServerSide";
+import { env } from "@/env.mjs";
 import { notFound } from "next/navigation";
 import React, { Fragment, Suspense } from "react";
 
@@ -10,13 +11,12 @@ interface iPropsISR {
 export const revalidate = 60;
 
 const SSR = async ({ params }: iPropsISR) => {
+  const referer: string = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
   const count = Number(params.count);
 
   if (isNaN(count)) {
     return notFound();
   }
-
-  const referer = "http://localhost:3000";
 
   const res = await fetch(`${referer}/api/count/${count}`);
   const data = (await res.json()) as iResponseCount;
@@ -28,7 +28,7 @@ const SSR = async ({ params }: iPropsISR) => {
         <div className="flex flex-col">
           {data ? (
             data.elements.flatMap((item, idx) => {
-              const imageRef = `${referer}/api/image-gen/${idx + 1}`;
+              const imageRef = `/api/image-gen/${idx + 1}`;
               return (
                 <Fragment key={idx}>
                   <ListItemServerSide imageRef={imageRef} item={item} />{" "}

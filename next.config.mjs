@@ -4,15 +4,17 @@
  */
 await import("./src/env.mjs");
 
+const isProd = process.env.NODE_ENV === "production";
+
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
   images: {
     domains: ["localhost"],
   },
-  experimental: {
-    workerThreads: true,
-  },
+  assetPrefix: isProd
+    ? "https://perf-test-nextjs.vercel.app"
+    : "http://localhost:3000",
 
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config

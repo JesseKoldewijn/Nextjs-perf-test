@@ -3,6 +3,7 @@ import React, { Fragment, Suspense } from "react";
 import { type iResponseCount } from "@/app/api/count/[count]/route";
 import { notFound } from "next/navigation";
 import ListItemServerSide from "@/components/listItemServerSide";
+import { env } from "@/env.mjs";
 
 const SSR = async ({ params }: { params: { count: string } }) => {
   const count = Number(params.count);
@@ -11,7 +12,7 @@ const SSR = async ({ params }: { params: { count: string } }) => {
     return notFound();
   }
 
-  const referer = "http://localhost:3000";
+  const referer: string = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
 
   const res = await fetch(`${referer}/api/count/${count}`);
   const data = (await res.json()) as iResponseCount;

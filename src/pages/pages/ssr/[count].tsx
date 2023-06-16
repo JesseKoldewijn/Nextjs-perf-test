@@ -2,6 +2,7 @@ import { Fragment, Suspense } from "react";
 
 import { type iResponseCount } from "@/app/api/count/[count]/route";
 import ListItemServerSide from "@/components/listItemServerSide";
+import { env } from "@/env.mjs";
 
 const SSR = ({
   count,
@@ -44,7 +45,7 @@ export const getServerSideProps = async ({
   };
 }) => {
   const count = parseInt(params.count);
-  const referer = "http://localhost:3000";
+  const referer = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
 
   if (isNaN(count)) {
     return {

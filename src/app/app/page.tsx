@@ -7,7 +7,6 @@ const AppHome: NextPage = () => {
     <>
       <Head>
         <title>Perf Test Next.js</title>
-
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex w-full flex-col items-center justify-center">
