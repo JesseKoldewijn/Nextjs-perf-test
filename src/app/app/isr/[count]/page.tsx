@@ -11,7 +11,11 @@ interface iPropsISR {
 export const revalidate = 60;
 
 const SSR = async ({ params }: iPropsISR) => {
-  const referer: string = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
+  const referer: string = env.NEXT_URI
+    ? env.NEXT_URI
+    : env.NEXT_PUBLIC_URI
+    ? env.NEXT_PUBLIC_URI
+    : "http://localhost:3000";
   const count = Number(params.count);
 
   if (isNaN(count)) {
@@ -26,9 +30,9 @@ const SSR = async ({ params }: iPropsISR) => {
       <h1>SSR - Pages - count: {count}</h1>
       <Suspense fallback={<>Loading...</>}>
         <div className="flex flex-col">
-          {data ? (
+          {data !== undefined ? (
             data.elements.flatMap((item, idx) => {
-              const imageRef = `/api/image-gen/${idx + 1}`;
+              const imageRef = `${referer}/api/image-gen/${idx + 1}`;
               return (
                 <Fragment key={idx}>
                   <ListItemServerSide imageRef={imageRef} item={item} />{" "}

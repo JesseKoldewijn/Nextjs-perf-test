@@ -4,6 +4,7 @@ import { type iResponseCount } from "@/app/api/count/[count]/route";
 import ListItemServerSide from "@/components/listItemServerSide";
 import { type GetStaticPaths } from "next";
 import { env } from "@/env.mjs";
+import { getCountedData } from "@/utils/getCountedData";
 
 interface iPropsISR {
   count: number;
@@ -17,7 +18,7 @@ const SSR = ({ count, referer, data }: iPropsISR) => {
       <h1>SSR - Pages - count: {count}</h1>
       <Suspense fallback={<>Loading...</>}>
         <div className="flex flex-col">
-          {data ? (
+          {data !== undefined ? (
             data.elements.flatMap((item, idx) => {
               const imageRef = `${referer}/api/image-gen/${idx + 1}`;
               return (
@@ -44,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = () => {
       "/pages/isr/200",
       "/pages/isr/600",
     ],
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -64,7 +65,11 @@ export const getStaticProps = async ({
   }
 
   const count = parseInt(String(paramObj.count));
-  const referer: string = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
+  const referer: string = env.NEXT_URI
+    ? env.NEXT_URI
+    : env.NEXT_PUBLIC_URI
+    ? env.NEXT_PUBLIC_URI
+    : "http://localhost:3000";
 
   if (isNaN(count)) {
     return {
@@ -72,26 +77,45 @@ export const getStaticProps = async ({
     };
   }
 
-  const getData = async (countNum: string | number) => {
-    const res = await fetch(`${referer}/api/count/${countNum}`);
-    const data = (await res.json()) as iResponseCount;
-    return data;
-  };
+  try {
+    const getData = async (countNum: string | number) => {
+      const res = await fetch(`${referer}/api/count/${countNum}`);
+      const data = (await res.json()) as iResponseCount;
+      return data;
+    };
 
-  const data = await getData(count);
+    const data = await getData(count);
 
-  if (!data) {
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
-      notFound: true,
+      props: {
+        count,
+        referer,
+        data,
+      },
+      revalidate: 60,
+    };
+  } catch (e) {
+    const data = getCountedData(count);
+
+    if (!data) {
+      return {
+        notFound: true,
+      };
+    }
+
+    return {
+      props: {
+        count,
+        referer,
+        data,
+      },
+      revalidate: 60,
     };
   }
-
-  return {
-    props: {
-      count,
-      referer,
-      data,
-    },
-    revalidate: 60,
-  };
 };

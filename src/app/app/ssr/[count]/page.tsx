@@ -12,7 +12,11 @@ const SSR = async ({ params }: { params: { count: string } }) => {
     return notFound();
   }
 
-  const referer: string = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
+  const referer: string = env.NEXT_URI
+    ? env.NEXT_URI
+    : env.NEXT_PUBLIC_URI
+    ? env.NEXT_PUBLIC_URI
+    : "http://localhost:3000";
 
   const res = await fetch(`${referer}/api/count/${count}`);
   const data = (await res.json()) as iResponseCount;

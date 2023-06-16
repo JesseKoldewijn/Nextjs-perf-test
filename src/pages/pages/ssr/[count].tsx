@@ -45,7 +45,11 @@ export const getServerSideProps = async ({
   };
 }) => {
   const count = parseInt(params.count);
-  const referer = env.NEXT_URI ? env.NEXT_URI : env.NEXT_PUBLIC_URI;
+  const referer: string = env.NEXT_URI
+    ? env.NEXT_URI
+    : env.NEXT_PUBLIC_URI
+    ? env.NEXT_PUBLIC_URI
+    : "http://localhost:3000";
 
   if (isNaN(count)) {
     return {
