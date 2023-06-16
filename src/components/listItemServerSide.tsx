@@ -24,5 +24,4 @@ const ListItemServerSide = ({ item }: iProps) => {
     </div>
   );
 };
-
 export default ListItemServerSide;
