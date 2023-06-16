@@ -17,6 +17,7 @@ const ListItemServerSide = ({ item }: iProps) => {
         width={120}
         loading="lazy"
         placeholder="blur"
+        className="object-contain"
       />
       <strong>{item.name}</strong>
       <p>{item.desc}</p>
