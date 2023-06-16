@@ -8,11 +8,10 @@ import { getCountedData } from "@/utils/getCountedData";
 
 interface iPropsISR {
   count: number;
-  referer: string;
   data: iResponseCount;
 }
 
-const SSR = ({ count, referer, data }: iPropsISR) => {
+const SSR = ({ count, data }: iPropsISR) => {
   return (
     <div>
       <h1>SSR - Pages - count: {count}</h1>
@@ -20,10 +19,9 @@ const SSR = ({ count, referer, data }: iPropsISR) => {
         <div className="flex flex-col">
           {data !== undefined ? (
             data.elements.flatMap((item, idx) => {
-              const imageRef = `${referer}/api/image-gen/${idx + 1}`;
               return (
                 <Fragment key={idx}>
-                  <ListItemServerSide imageRef={imageRef} item={item} />{" "}
+                  <ListItemServerSide item={item} />{" "}
                 </Fragment>
               );
             })
@@ -112,7 +110,6 @@ export const getStaticProps = async ({
     return {
       props: {
         count,
-        referer,
         data,
       },
       revalidate: 60,

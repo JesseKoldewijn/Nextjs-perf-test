@@ -6,7 +6,6 @@ import { env } from "@/env.mjs";
 
 const SSR = ({
   count,
-  referer,
   data,
 }: {
   count: number;
@@ -20,10 +19,9 @@ const SSR = ({
         <div className="flex flex-col">
           {data ? (
             data.elements.flatMap((item, idx) => {
-              const imageRef = `${referer}/api/image-gen/${idx + 1}`;
               return (
                 <Fragment key={idx}>
-                  <ListItemServerSide imageRef={imageRef} item={item} />{" "}
+                  <ListItemServerSide item={item} />{" "}
                 </Fragment>
               );
             })

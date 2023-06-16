@@ -1,6 +1,7 @@
 import { type iResponseCount } from "@/app/api/count/[count]/route";
 import ListItemServerSide from "@/components/listItemServerSide";
 import { env } from "@/env.mjs";
+import { type ServerRuntime } from "next";
 import { notFound } from "next/navigation";
 import React, { Fragment, Suspense } from "react";
 
@@ -8,6 +9,7 @@ interface iPropsISR {
   params: { count: number };
 }
 
+export const runtime: ServerRuntime = "edge";
 export const revalidate = 60;
 
 const SSR = async ({ params }: iPropsISR) => {
@@ -32,10 +34,9 @@ const SSR = async ({ params }: iPropsISR) => {
         <div className="flex flex-col">
           {data !== undefined ? (
             data.elements.flatMap((item, idx) => {
-              const imageRef = `${referer}/api/image-gen/${idx + 1}`;
               return (
                 <Fragment key={idx}>
-                  <ListItemServerSide imageRef={imageRef} item={item} />{" "}
+                  <ListItemServerSide item={item} />
                 </Fragment>
               );
             })
