@@ -8,21 +8,21 @@ const Home: NextPage = () => {
         <h1>Perf Test Next.js</h1>
         <div className="mt-4 flex w-full max-w-md items-center justify-center gap-8 text-center">
           <div className="flex flex-col">
-            <h2 className="mb-2 font-bold">Pages</h2>
+            <h2 className="mb-2 font-bold text-white">Pages</h2>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/pages/ssr/64"
             >
               SSR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/pages/isr/64"
             >
               ISR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/pages/dynamic/64"
             >
               Dynamic
@@ -31,19 +31,19 @@ const Home: NextPage = () => {
           <div className="flex flex-col">
             <h2 className="mb-2 font-bold">App</h2>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/app/ssr/64"
             >
               SSR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/app/isr/64"
             >
               ISR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/app/dynamic/64"
             >
               Dynamic
