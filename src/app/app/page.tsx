@@ -15,19 +15,19 @@ const AppHome: NextPage = () => {
           <div className="flex flex-col">
             <h2 className="mb-2 font-bold">App</h2>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/app/ssr/64"
             >
               SSR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/app/isr/64"
             >
               ISR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/app/dynamic/64"
             >
               Dynamic

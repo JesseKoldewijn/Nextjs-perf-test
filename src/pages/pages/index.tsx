@@ -10,19 +10,19 @@ const PagesHome: NextPage = () => {
           <div className="flex flex-col">
             <h2 className="mb-2 font-bold">Pages</h2>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/pages/ssr/64"
             >
               SSR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/pages/isr/64"
             >
               ISR
             </Link>
             <Link
-              className="text-black underline hover:font-semibold hover:no-underline"
+              className="underline hover:font-semibold hover:no-underline"
               href="/pages/dynamic/64"
             >
               Dynamic
