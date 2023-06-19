@@ -1,7 +1,7 @@
 import { Fragment, Suspense } from "react";
 
 import { type iResponseCount } from "@/app/api/count/[count]/route";
-import ListItemServerSide from "@/components/listItemServerSide";
+import ListItem from "@/components/ListItem";
 import { type GetStaticPaths } from "next";
 import { env } from "@/env.mjs";
 import { getCountedData } from "@/utils/getCountedData";
@@ -16,17 +16,17 @@ const SSR = ({ count, data }: iPropsISR) => {
     <div>
       <h1>SSR - Pages - count: {count}</h1>
       <Suspense fallback={<>Loading...</>}>
-        <div className="flex flex-col">
+        <div className="mt-2 flex flex-col gap-2">
           {data !== undefined ? (
             data.elements.flatMap((item, idx) => {
               return (
                 <Fragment key={idx}>
-                  <ListItemServerSide item={item} />{" "}
+                  <ListItem item={item} />{" "}
                 </Fragment>
               );
             })
           ) : (
-            <></>
+            <span className="animate-pulse">Loading...</span>
           )}
         </div>
       </Suspense>

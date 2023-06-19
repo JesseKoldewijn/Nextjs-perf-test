@@ -7,7 +7,7 @@ export interface iProps {
   item: iResponseCount["elements"][0];
 }
 
-const ListItemServerSide = ({ item }: iProps) => {
+const ListItem = ({ item }: iProps) => {
   return (
     <div className="flex gap-2 rounded-md border-2 p-2">
       <Image
@@ -24,4 +24,4 @@ const ListItemServerSide = ({ item }: iProps) => {
     </div>
   );
 };
-export default ListItemServerSide;
+export default ListItem;

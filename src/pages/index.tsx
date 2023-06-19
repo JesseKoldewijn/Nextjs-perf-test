@@ -11,19 +11,19 @@ const Home: NextPage = () => {
             <h2 className="mb-2 font-bold">Pages</h2>
             <Link
               className="text-black underline hover:font-semibold hover:no-underline"
-              href="/pages/ssr"
+              href="/pages/ssr/64"
             >
               SSR
             </Link>
             <Link
               className="text-black underline hover:font-semibold hover:no-underline"
-              href="/pages/isr"
+              href="/pages/isr/64"
             >
               ISR
             </Link>
             <Link
               className="text-black underline hover:font-semibold hover:no-underline"
-              href="/pages/dynamic"
+              href="/pages/dynamic/64"
             >
               Dynamic
             </Link>
@@ -32,19 +32,19 @@ const Home: NextPage = () => {
             <h2 className="mb-2 font-bold">App</h2>
             <Link
               className="text-black underline hover:font-semibold hover:no-underline"
-              href="/app/ssr"
+              href="/app/ssr/64"
             >
               SSR
             </Link>
             <Link
               className="text-black underline hover:font-semibold hover:no-underline"
-              href="/app/isr"
+              href="/app/isr/64"
             >
               ISR
             </Link>
             <Link
               className="text-black underline hover:font-semibold hover:no-underline"
-              href="/app/dynamic"
+              href="/app/dynamic/64"
             >
               Dynamic
             </Link>

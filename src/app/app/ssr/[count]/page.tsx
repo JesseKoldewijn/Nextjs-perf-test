@@ -4,8 +4,9 @@ import { type ServerRuntime } from "next";
 import { notFound } from "next/navigation";
 
 import { type iResponseCount } from "@/app/api/count/[count]/route";
-import ListItemServerSide from "@/components/listItemServerSide";
+import ListItem from "@/components/ListItem";
 import { env } from "@/env.mjs";
+import Loading from "@/components/Loading";
 
 export const runtime: ServerRuntime = "edge";
 export const revalidate = 60;
@@ -29,19 +30,15 @@ const SSR = async ({ params }: { params: { count: string } }) => {
   return (
     <div>
       <h1>SSR - App - count: {count}</h1>
-      <Suspense fallback={<>Loading...</>}>
-        <div className="flex flex-col">
-          {data ? (
-            data.elements.flatMap((item, idx) => {
-              return (
-                <Fragment key={idx}>
-                  <ListItemServerSide item={item} />{" "}
-                </Fragment>
-              );
-            })
-          ) : (
-            <></>
-          )}
+      <Suspense fallback={<Loading />}>
+        <div className="mt-2 flex flex-col gap-2">
+          {data.elements.flatMap((item, idx) => {
+            return (
+              <Fragment key={idx}>
+                <ListItem item={item} />{" "}
+              </Fragment>
+            );
+          })}
         </div>
       </Suspense>
     </div>

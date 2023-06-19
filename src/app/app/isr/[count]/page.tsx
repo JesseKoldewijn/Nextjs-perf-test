@@ -1,5 +1,6 @@
 import { type iResponseCount } from "@/app/api/count/[count]/route";
-import ListItemServerSide from "@/components/listItemServerSide";
+import ListItem from "@/components/ListItem";
+import Loading from "@/components/Loading";
 import { env } from "@/env.mjs";
 import { type ServerRuntime } from "next";
 import { notFound } from "next/navigation";
@@ -30,19 +31,15 @@ const SSR = async ({ params }: iPropsISR) => {
   return (
     <div>
       <h1>SSR - Pages - count: {count}</h1>
-      <Suspense fallback={<>Loading...</>}>
-        <div className="flex flex-col">
-          {data !== undefined ? (
-            data.elements.flatMap((item, idx) => {
-              return (
-                <Fragment key={idx}>
-                  <ListItemServerSide item={item} />
-                </Fragment>
-              );
-            })
-          ) : (
-            <></>
-          )}
+      <Suspense fallback={<Loading />}>
+        <div className="mt-2 flex flex-col gap-2">
+          {data.elements.flatMap((item, idx) => {
+            return (
+              <Fragment key={idx}>
+                <ListItem item={item} />
+              </Fragment>
+            );
+          })}
         </div>
       </Suspense>
     </div>
