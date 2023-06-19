@@ -6,7 +6,7 @@ import ListItem from "@/components/ListItem";
 import Loading from "@/components/Loading";
 import { env } from "@/env.mjs";
 import ErrorPage from "next/error";
-import { Suspense, Fragment, useState, useMemo, useRef } from "react";
+import { Fragment, useState, useMemo, useRef } from "react";
 
 const Dynamic = ({ params }: { params: { count: string | string[] } }) => {
   const { count } = params;
