@@ -5,6 +5,10 @@
 
 > Testing application which shows the performance between SSR, ISR, Dynamic on the App Router Vs. Pages Router.
 
+## Why?
+
+In this project you can see, test and proof the performance between the Pages and App routers. Feel free to fork + deploy this repo yourself for personal testing and/or expanding the scope of the tests.
+
 ## Install
 
 ```sh
@@ -21,12 +25,8 @@ pnpm run dev
 
 👤 **Jesse Koldewijn**
 
-* Website: https://jkinsight.nl
-* Github: [@JesseKoldewijn](https://github.com/JesseKoldewijn)
+- Website: https://jkinsight.nl
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
