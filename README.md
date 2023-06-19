@@ -1,9 +1,20 @@
 <h1 align="center">Welcome to Next.js Performance Benchmark 👋</h1>
+
+> Testing application which shows the performance between SSR, ISR, Dynamic on the App Router Vs. Pages Router.
+
+## Details
+
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Testing application which shows the performance between SSR, ISR, Dynamic on the App Router Vs. Pages Router.
+## Checks
+
+<p>
+  <a href="https://github.com/JesseKoldewijn/Nextjs-perf-test/actions/workflows/workspace-ci.yml">
+    <img src="https://github.com/JesseKoldewijn/Nextjs-perf-test/actions/workflows/workspace-ci.yml/badge.svg" alt="CI">
+  </a
+</p>
 
 ## Why?
 
